@@ -1,303 +1,400 @@
-‏<!DOCTYPE html>
-‏<html lang="en">
-‏<head>
-‏<meta charset="UTF-8">
-‏<meta name="viewport" content="width=device-width, initial-scale=1.0">
-‏<title>GOSSIP MENU</title>
-‏<style>
-‏body {margin:0; font-family:"Georgia", serif; background-color:#fffdf6; color:#3e2f1c;}
-‏header {background:linear-gradient(90deg, #5e4632, #a18860); color:white; padding:20px; text-align:center;}
-‏header h1 {margin:0; font-size:2.5em; letter-spacing:2px;}
-‏nav {background:#3e2f1c; display:flex; justify-content:center; flex-wrap:wrap;}
-‏nav a {color:#f5e1a4; padding:12px 20px; text-decoration:none; font-weight:bold; transition:background 0.3s;}
-‏nav a:hover {background:#a18860; color:#fff;}
-‏section {padding:40px 20px; max-width:900px; margin:auto; animation:fadeIn 1s ease-in;}
-‏section h2 {border-bottom:3px solid #a18860; padding-bottom:10px; margin-bottom:20px; font-size:1.8em; text-transform:uppercase;}
-‏.item {display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dotted #c9b89a;}
-‏.item:last-child {border:none;}
-‏.price {font-weight:bold; color:#5e4632;}
-‏@keyframes fadeIn {from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);}}
-‏</style>
-‏</head>
-‏<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GOSSIP - Menu</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --bg:#0f0f11;
+    --card:#141414;
+    --muted:#bfb8a8;
+    --accent:#c8a951;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, "Segoe UI", Tahoma, sans-serif;
+    background: linear-gradient(180deg,#0b0b0c 0%, #111 60%);
+    color:#eee;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+  header{
+    padding:40px 20px;
+    text-align:center;
+    border-bottom:1px solid rgba(200,169,81,0.12);
+    background: linear-gradient(90deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    position: sticky;
+    top:0;
+    z-index:10;
+    backdrop-filter: blur(6px);
+  }
+  .brand{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:8px;
+    animation: pop 900ms ease;
+  }
+  h1{ margin:0; font-size:36px; letter-spacing:2px; color:var(--accent); }
+  p.lead{ margin:6px 0 0; color:var(--muted); font-size:14px; letter-spacing:3px; }
 
-‏<header>
-‏  <h1>GOSSIP</h1>
-‏  <p>LIVE • LAUGH • GOSSIP</p>
-‏</header>
+  /* top navigation bar */
+  .top-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .top-nav a {
+    font-size: 15px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(200,169,81,0.25);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+  .top-nav a:hover {
+    transform: translateY(-3px);
+    background: #f5d67c;
+  }
+  .top-nav.hidden {
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
 
-‏<nav>
-‏  <a href="#hotdrinks">Hot Drinks</a>
-‏  <a href="#iceddrinks">Iced Drinks</a>
-‏  <a href="#frappe">Frappé</a>
-‏  <a href="#smoothies">Smoothies & Milk Shakes</a>
-‏  <a href="#softdrinks">Soft Drinks</a>
-‏  <a href="#cocktails">Cocktails</a>
-‏  <a href="#extras">Extras</a>
-‏  <a href="#dessert">Dessert</a>
-‏  <a href="#breakfast">Breakfast</a>
-‏  <a href="#appetizers">Appetizers</a>
-‏  <a href="#soups">Soups</a>
-‏  <a href="#salads">Salads</a>
-‏  <a href="#chicken">Chicken</a>
-‏  <a href="#meat">Meat</a>
-‏  <a href="#seafood">Seafood</a>
-‏  <a href="#pasta">Pasta</a>
-‏  <a href="#pizza">Pizza</a>
-‏  <a href="#burgers">Burgers</a>
-‏  <a href="#sandwiches">Sandwiches</a>
-‏</nav>
+  main{ max-width:1100px; margin:30px auto; padding:0 18px 60px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px; }
+  .section{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);
+    padding:18px;
+    border-radius:12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    transform-origin:center;
+    overflow:hidden;
+  }
+  .section h2{
+    margin:0 0 8px; color:var(--accent); font-size:18px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .toggle{ font-size:13px; color:var(--muted); cursor:pointer; background:transparent; border:0; }
+  ul.list{ list-style:none; padding:0; margin:10px 0 0; max-height:600px; overflow:auto; }
+  li.item{
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+    padding:10px 12px; border-radius:8px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.01), transparent);
+    margin-bottom:8px;
+    border:1px solid rgba(255,255,255,0.02);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  li.item:hover{ transform: translateY(-6px); box-shadow:0 10px 30px rgba(200,169,81,0.08); }
+  .name{ font-weight:600; color:#f5f3ea; }
+  .price{ color:var(--accent); font-weight:700; min-width:52px; text-align:right; }
+  .muted{ color:var(--muted); font-weight:500; font-size:13px; }
+  footer{ margin-top:30px; padding:28px 18px; color:var(--muted); text-align:center; border-top:1px solid rgba(200,169,81,0.06); }
+  .badge{ display:inline-block; padding:6px 10px; border-radius:999px; background:var(--glass); color:var(--muted); border:1px solid rgba(255,255,255,0.02); margin-top:6px; }
+  @keyframes pop{ from{ transform: translateY(-10px) scale(.98); opacity:0 } to{ transform:none; opacity:1 } }
+  .fade-in{ animation: fadeIn .6s ease both; }
+  @keyframes fadeIn{ from{ opacity:0; transform:translateY(8px) } to{ opacity:1; transform:none } }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>GOSSIP</h1>
+    <p class="lead">LIVE · LAUGH · GOSSIP</p>
+  </div>
 
-‏<!-- Hot Drinks -->
-‏<section id="hotdrinks">
-‏<h2>Hot Drinks</h2>
-‏<div class="item"><span>Espresso</span><span class="price">57</span></div>
-‏<div class="item"><span>Double Espresso</span><span class="price">75</span></div>
-‏<div class="item"><span>Macchiato</span><span class="price">75</span></div>
-‏<div class="item"><span>Double Macchiato</span><span class="price">85</span></div>
-‏<div class="item"><span>Cappuccino</span><span class="price">105</span></div>
-‏<div class="item"><span>Latte</span><span class="price">105</span></div>
-‏<div class="item"><span>Nescafe</span><span class="price">85</span></div>
-‏<div class="item"><span>Mocha</span><span class="price">115</span></div>
-‏<div class="item"><span>Hot Chocolate</span><span class="price">100</span></div>
-‏<div class="item"><span>Nutella Coffee</span><span class="price">100</span></div>
-‏<div class="item"><span>Lotus Coffee</span><span class="price">110</span></div>
-‏<div class="item"><span>Flat White</span><span class="price">110</span></div>
-‏<div class="item"><span>Americano</span><span class="price">100</span></div>
-‏<div class="item"><span>Turkish Coffee</span><span class="price">52</span></div>
-‏<div class="item"><span>Double Turkish Coffee</span><span class="price">65</span></div>
-‏<div class="item"><span>Turkish with Milk</span><span class="price">75</span></div>
-‏<div class="item"><span>Turkish Hazelnut</span><span class="price">80</span></div>
-‏<div class="item"><span>Tea</span><span class="price">50</span></div>
-‏<div class="item"><span>Tea Pot (Zarda)</span><span class="price">90</span></div>
-‏<div class="item"><span>Flavored Tea</span><span class="price">60</span></div>
-‏<div class="item"><span>Mixed Herbs</span><span class="price">85</span></div>
-‏<div class="item"><span>Hot Cider</span><span class="price">85</span></div>
-‏</section>
+  <!-- top navigation with rectangular buttons -->
+  <nav class="top-nav">
+    <a href="#hot-drinks"><i class="fa-solid fa-mug-hot"></i> Hot Drinks</a>
+    <a href="#iced-drinks"><i class="fa-solid fa-glass-water"></i> Iced Drinks</a>
+    <a href="#sparkling"><i class="fa-regular fa-star"></i> Sparkling</a>
+    <a href="#cocktails"><i class="fa-solid fa-martini-glass-citrus"></i> Cocktails</a>
+    <a href="#fresh-juice"><i class="fa-solid fa-blender"></i> Fresh Juice</a>
+    <a href="#smoothies"><i class="fa-solid fa-ice-cream"></i> Smoothies</a>
+    <a href="#milkshake"><i class="fa-solid fa-whiskey-glass"></i> Milkshake</a>
+    <a href="#soft-drinks"><i class="fa-solid fa-wine-glass-empty"></i> Soft Drinks</a>
+    <a href="#breakfast"><i class="fa-solid fa-bacon"></i> Breakfast</a>
+    <a href="#appetizers"><i class="fa-solid fa-bowl-food"></i> Appetizers</a>
+    <a href="#soups"><i class="fa-solid fa-utensil-spoon"></i> Soups</a>
+    <a href="#salads"><i class="fa-solid fa-leaf"></i> Salads</a>
+    <a href="#main-chicken"><i class="fa-solid fa-drumstick-bite"></i> Main - Chicken</a>
+    <a href="#meat"><i class="fa-solid fa-cow"></i> Meat</a>
+    <a href="#seafood"><i class="fa-solid fa-fish"></i> Seafood</a>
+    <a href="#fajitas"><i class="fa-solid fa-pepper-hot"></i> Fajitas</a>
+    <a href="#pasta"><i class="fa-solid fa-bowl-rice"></i> Pasta</a>
+    <a href="#pizza"><i class="fa-solid fa-pizza-slice"></i> Pizza</a>
+    <a href="#burgers"><i class="fa-solid fa-burger"></i> Burgers</a>
+    <a href="#sandwiches"><i class="fa-solid fa-bread-slice"></i> Sandwiches</a>
+    <a href="#dessert"><i class="fa-solid fa-cookie-bite"></i> Dessert</a>
+    <a href="#extras"><i class="fa-solid fa-plus"></i> Extras</a>
+  </nav>
+</header>
 
-‏<!-- Iced Drinks -->
-‏<section id="iceddrinks">
-‏<h2>Iced Drinks</h2>
-‏<div class="item"><span>Iced Chocolate</span><span class="price">115</span></div>
-‏<div class="item"><span>Iced Espresso</span><span class="price">115</span></div>
-‏<div class="item"><span>Iced Latte</span><span class="price">115</span></div>
-‏<div class="item"><span>Iced Mocha</span><span class="price">107</span></div>
-‏<div class="item"><span>Iced Double Espresso</span><span class="price">120</span></div>
-‏<div class="item"><span>Iced Nescafe</span><span class="price">105</span></div>
-‏<div class="item"><span>Iced Tea</span><span class="price">100</span></div>
-‏</section>
+<main>
 
-‏<!-- Frappé -->
-‏<section id="frappe">
-‏<h2>Frappé</h2>
-‏<div class="item"><span>Caramel / Vanilla / Cinnamon / Hazelnut</span><span class="price">115</span></div>
-‏<div class="item"><span>Mocha</span><span class="price">125</span></div>
-‏<div class="item"><span>Lotus</span><span class="price">140</span></div>
-‏</section>
+  <!-- Hot Drinks -->
+  <section id="hot-drinks" class="section fade-in">
+    <h2>Hot Drinks</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Espresso</span><span class="price">30</span></li>
+      <li class="item"><span class="name">Double Espresso</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Americano</span><span class="price">35</span></li>
+      <li class="item"><span class="name">Cappuccino</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Latte</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Mocha</span><span class="price">50</span></li>
+      <li class="item"><span class="name">Hot Chocolate</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Tea</span><span class="price">25</span></li>
+    </ul>
+  </section>
 
-‏<!-- Smoothies & Milk Shakes -->
-‏<section id="smoothies">
-‏<h2>Smoothies & Milk Shakes</h2>
-‏<div class="item"><span>Smoothies (Mango, Strawberry, Lemon, Banana, Guava, Kiwi, Watermelon, Pomegranate)</span><span class="price">116</span></div>
-‏<div class="item"><span>Milk Shake (Oreo, Kiwi, Mango, Strawberry, Vanilla, Chocolate)</span><span class="price">140</span></div>
-‏<div class="item"><span>Milk Shake Nutella</span><span class="price">155</span></div>
-‏<div class="item"><span>Milk Shake Lotus, Pistachio</span><span class="price">155</span></div>
-‏</section>
+  <!-- Iced Drinks -->
+  <section id="iced-drinks" class="section fade-in">
+    <h2>Iced Drinks</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Iced Americano</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Iced Latte</span><span class="price">50</span></li>
+      <li class="item"><span class="name">Iced Mocha</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Iced Tea</span><span class="price">35</span></li>
+    </ul>
+  </section>
 
-‏<!-- Soft Drinks -->
-‏<section id="softdrinks">
-‏<h2>Soft Drinks</h2>
-‏<div class="item"><span>Water Small</span><span class="price">25</span></div>
-‏<div class="item"><span>Water Large</span><span class="price">50</span></div>
-‏<div class="item"><span>Cola, Sprite, Fanta</span><span class="price">55</span></div>
-‏<div class="item"><span>Fayrouz, Birell, Schweppes</span><span class="price">65</span></div>
-‏<div class="item"><span>Red Bull</span><span class="price">130</span></div>
-‏</section>
+  <!-- Sparkling -->
+  <section id="sparkling" class="section fade-in">
+    <h2>Sparkling</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Lemon Sparkling</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Berry Sparkling</span><span class="price">50</span></li>
+      <li class="item"><span class="name">Peach Sparkling</span><span class="price">50</span></li>
+    </ul>
+  </section>
 
-‏<!-- Cocktails -->
-‏<section id="cocktails">
-‏<h2>Cocktails</h2>
-‏<div class="item"><span>Espresso Red Bull</span><span class="price">155</span></div>
-‏<div class="item"><span>Cherry Cola</span><span class="price">95</span></div>
-‏<div class="item"><span>Classic Mojito</span><span class="price">115</span></div>
-‏<div class="item"><span>Flavored Mojito</span><span class="price">130</span></div>
-‏<div class="item"><span>Sunshine</span><span class="price">95</span></div>
-‏<div class="item"><span>Submarine</span><span class="price">120</span></div>
-‏<div class="item"><span>Alex Night, Paradise</span><span class="price">130</span></div>
-‏<div class="item"><span>Kiwi Slash, Blueberry Slash</span><span class="price">122</span></div>
-‏<div class="item"><span>Fruit Mint</span><span class="price">112</span></div>
-‏</section>
+  <!-- Cocktails -->
+  <section id="cocktails" class="section fade-in">
+    <h2>Cocktails</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Virgin Mojito</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Blue Lagoon</span><span class="price">60</span></li>
+      <li class="item"><span class="name">Sunset</span><span class="price">65</span></li>
+    </ul>
+  </section>
 
-‏<!-- Extras -->
-‏<section id="extras">
-‏<h2>Extras</h2>
-‏<div class="item"><span>Ice Cream</span><span class="price">50</span></div>
-‏<div class="item"><span>Nuts</span><span class="price">50</span></div>
-‏<div class="item"><span>Flavors</span><span class="price">50</span></div>
-‏<div class="item"><span>Nutella</span><span class="price">50</span></div>
-‏<div class="item"><span>Shishah Meassel (2)</span><span class="price">250</span></div>
-‏<div class="item"><span>Flavors</span><span class="price">275</span></div>
-‏<div class="item"><span>Pyrex Glass</span><span class="price">295</span></div>
-‏</section>
+  <!-- Fresh Juice -->
+  <section id="fresh-juice" class="section fade-in">
+    <h2>Fresh Juice</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Orange</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Apple</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Carrot</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Strawberry</span><span class="price">50</span></li>
+    </ul>
+  </section>
 
-‏<!-- Dessert -->
-‏<section id="dessert">
-‏<h2>Dessert</h2>
-‏<div class="item"><span>Molten Cake</span><span class="price">140</span></div>
-‏<div class="item"><span>Brownies</span><span class="price">120</span></div>
-‏<div class="item"><span>Oreo Madness</span><span class="price">175</span></div>
-‏<div class="item"><span>Om Aly with Nuts</span><span class="price">165</span></div>
-‏<div class="item"><span>Classic Ice Cream (3 scoops)</span><span class="price">140</span></div>
-‏<div class="item"><span>Waffle (Nutella, Lotus, Fruit, Caramel)</span><span class="price">150</span></div>
-‏<div class="item"><span>Fruit Salad</span><span class="price">150</span></div>
-‏</section>
+  <!-- Smoothies -->
+  <section id="smoothies" class="section fade-in">
+    <h2>Smoothies</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Mango Smoothie</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Banana Smoothie</span><span class="price">50</span></li>
+      <li class="item"><span class="name">Mixed Berry</span><span class="price">60</span></li>
+    </ul>
+  </section>
 
-‏<!-- Breakfast -->
-‏<section id="breakfast">
-‏<h2>Breakfast</h2>
-‏<div class="item"><span>Standard Breakfast</span><span class="price">350</span></div>
-‏<div class="item"><span>Extras</span><span class="price">60</span></div>
-‏</section>
+  <!-- Milkshake -->
+  <section id="milkshake" class="section fade-in">
+    <h2>Milkshake</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Vanilla</span><span class="price">50</span></li>
+      <li class="item"><span class="name">Chocolate</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Strawberry</span><span class="price">55</span></li>
+    </ul>
+  </section>
 
-‏<!-- Appetizers -->
-‏<section id="appetizers">
-‏<h2>Appetizers</h2>
-‏<div class="item"><span>Mozzarella Sticks (5 Pieces)</span><span class="price">120</span></div>
-‏<div class="item"><span>French Fries</span><span class="price">60</span></div>
-‏<div class="item"><span>Homemade Chips</span><span class="price">60</span></div>
-‏<div class="item"><span>Chicken Strips (5 Pieces)</span><span class="price">150</span></div>
-‏<div class="item"><span>Chicken Wings (6 Pieces)</span><span class="price">135</span></div>
-‏<div class="item"><span>Fried Shrimps</span><span class="price">190</span></div>
-‏<div class="item"><span>Shrimp Cocktail</span><span class="price">200</span></div>
-‏<div class="item"><span>Calamari</span><span class="price">170</span></div>
-‏<div class="item"><span>Oriental Sausages (Local Meat)</span><span class="price">170</span></div>
-‏<div class="item"><span>White Cheese and Tomatoes</span><span class="price">80</span></div>
-‏<div class="item"><span>Carrots & Cucumber Slices</span><span class="price">50</span></div>
-‏<div class="item"><span>Tehina</span><span class="price">60</span></div>
-‏<div class="item"><span>Pickles</span><span class="price">40</span></div>
-‏</section>
+  <!-- Soft Drinks -->
+  <section id="soft-drinks" class="section fade-in">
+    <h2>Soft Drinks</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Cola</span><span class="price">25</span></li>
+      <li class="item"><span class="name">Sprite</span><span class="price">25</span></li>
+      <li class="item"><span class="name">Fanta</span><span class="price">25</span></li>
+      <li class="item"><span class="name">Water</span><span class="price">15</span></li>
+    </ul>
+  </section>
 
-‏<!-- Soups -->
-‏<section id="soups">
-‏<h2>Soups</h2>
-‏<div class="item"><span>Seasonal Soup</span><span class="price">110</span></div>
-‏<div class="item"><span>Molokheya</span><span class="price">90</span></div>
-‏<div class="item"><span>Seafood</span><span class="price">220</span></div>
-‏<div class="item"><span>Chicken Cream</span><span class="price">150</span></div>
-‏<div class="item"><span>Mushroom</span><span class="price">130</span></div>
-‏<div class="item"><span>Onion</span><span class="price">140</span></div>
-‏</section>
+  <!-- Breakfast -->
+  <section id="breakfast" class="section fade-in">
+    <h2>Breakfast</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Omelette</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Pancakes</span><span class="price">60</span></li>
+      <li class="item"><span class="name">French Toast</span><span class="price">65</span></li>
+    </ul>
+  </section>
 
-‏<!-- Salads -->
-‏<section id="salads">
-‏<h2>Salads</h2>
-‏<div class="item"><span>Shrimp Caesar Salad</span><span class="price">210</span></div>
-‏<div class="item"><span>Chicken Caesar Salad</span><span class="price">160</span></div>
-‏<div class="item"><span>Greek Salad</span><span class="price">210</span></div>
-‏<div class="item"><span>Tuna Salad</span><span class="price">210</span></div>
-‏<div class="item"><span>Rocca Salad</span><span class="price">240</span></div>
-‏<div class="item"><span>Gossip Salad</span><span class="price">300</span></div>
-‏</section>
+  <!-- Appetizers -->
+  <section id="appetizers" class="section fade-in">
+    <h2>Appetizers</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Bruschetta</span><span class="price">70</span></li>
+      <li class="item"><span class="name">Nachos</span><span class="price">80</span></li>
+      <li class="item"><span class="name">Cheese Sticks</span><span class="price">85</span></li>
+    </ul>
+  </section>
 
-‏<!-- Chicken -->
-‏<section id="chicken">
-‏<h2>Chicken</h2>
-‏<div class="item"><span>Shredded Mexican Chicken</span><span class="price">290</span></div>
-‏<div class="item"><span>Chicken Curry</span><span class="price">290</span></div>
-‏<div class="item"><span>Chicken Panne</span><span class="price">290</span></div>
-‏<div class="item"><span>Crispy Chicken</span><span class="price">320</span></div>
-‏<div class="item"><span>Grilled Chicken with Lemon Sauce</span><span class="price">330</span></div>
-‏<div class="item"><span>Grilled Chicken with Mushroom Sauce</span><span class="price">350</span></div>
-‏<div class="item"><span>Chicken Cordon Bleu</span><span class="price">310</span></div>
-‏<div class="item"><span>Chicken Cacciatore</span><span class="price">360</span></div>
-‏<div class="item"><span>Chicken Gossip</span><span class="price">360</span></div>
-‏</section>
+  <!-- Soups -->
+  <section id="soups" class="section fade-in">
+    <h2>Soups</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Tomato Soup</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Chicken Soup</span><span class="price">55</span></li>
+      <li class="item"><span class="name">Mushroom Soup</span><span class="price">60</span></li>
+    </ul>
+  </section>
 
-‏<!-- Meat -->
-‏<section id="meat">
-‏<h2>Meat</h2>
-‏<div class="item"><span>Beef Stroganoff</span><span class="price">450</span></div>
-‏<div class="item"><span>Beef Fillet with Mushroom/Garlic/Pepper</span><span class="price">580</span></div>
-‏<div class="item"><span>Surf & Turf</span><span class="price">610</span></div>
-‏<div class="item"><span>Mixed Grill</span><span class="price">550</span></div>
-‏</section>
+  <!-- Salads -->
+  <section id="salads" class="section fade-in">
+    <h2>Salads</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Greek Salad</span><span class="price">70</span></li>
+      <li class="item"><span class="name">Caesar Salad</span><span class="price">85</span></li>
+      <li class="item"><span class="name">Garden Salad</span><span class="price">65</span></li>
+    </ul>
+  </section>
 
-‏<!-- Seafood -->
-‏<section id="seafood">
-‏<h2>Seafood</h2>
-‏<div class="item"><span>Mixed Seafood Platter</span><span class="price">520</span></div>
-‏<div class="item"><span>Jumbo Shrimps (8 pieces)</span><span class="price">590</span></div>
-‏<div class="item"><span>Salmon Fillet Lemon and Butter Sauce</span><span class="price">680</span></div>
-‏<div class="item"><span>Fish and Chips</span><span class="price">340</span></div>
-‏</section>
+  <!-- Main - Chicken -->
+  <section id="main-chicken" class="section fade-in">
+    <h2>Main - Chicken</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Grilled Chicken</span><span class="price">140</span></li>
+      <li class="item"><span class="name">Chicken Curry</span><span class="price">150</span></li>
+      <li class="item"><span class="name">Chicken Alfredo</span><span class="price">160</span></li>
+    </ul>
+  </section>
 
-‏<!-- Pasta -->
-‏<section id="pasta">
-‏<h2>Pasta</h2>
-‏<div class="item"><span>Arabiata</span><span class="price">165</span></div>
-‏<div class="item"><span>Alfredo</span><span class="price">210</span></div>
-‏<div class="item"><span>Bolognese</span><span class="price">210</span></div>
-‏<div class="item"><span>Negresco</span><span class="price">250</span></div>
-‏<div class="item"><span>Crispy Chicken Pasta</span><span class="price">210</span></div>
-‏<div class="item"><span>Seafood Pasta</span><span class="price">290</span></div>
-‏<div class="item"><span>Chicken Pesto</span><span class="price">240</span></div>
-‏<div class="item"><span>Mac Cheese</span><span class="price">220</span></div>
-‏<div class="item"><span>Mushroom Pasta</span><span class="price">190</span></div>
-‏</section>
+  <!-- Meat -->
+  <section id="meat" class="section fade-in">
+    <h2>Meat</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Beef Steak</span><span class="price">200</span></li>
+      <li class="item"><span class="name">Lamb Chops</span><span class="price">220</span></li>
+      <li class="item"><span class="name">Beef Stroganoff</span><span class="price">190</span></li>
+    </ul>
+  </section>
 
-‏<!-- Pizza -->
-‏<section id="pizza">
-‏<h2>Pizza</h2>
-‏<div class="item"><span>Pizza Margherita</span><span class="price">200</span></div>
-‏<div class="item"><span>Pizza Vegetarian</span><span class="price">200</span></div>
-‏<div class="item"><span>Pizza Chicken (BBQ/Ranch)</span><span class="price">240</span></div>
-‏<div class="item"><span>Pizza Oriental Sausage</span><span class="price">250</span></div>
-‏<div class="item"><span>Pizza Tuna</span><span class="price">250</span></div>
-‏<div class="item"><span>Pizza Seafood</span><span class="price">290</span></div>
-‏<div class="item"><span>Pizza Salami</span><span class="price">250</span></div>
-‏<div class="item"><span>Pizza Anchovies</span><span class="price">290</span></div>
-‏<div class="item"><span>Pizza Mixed Beef</span><span class="price">300</span></div>
-‏</section>
+  <!-- Seafood -->
+  <section id="seafood" class="section fade-in">
+    <h2>Seafood</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Grilled Salmon</span><span class="price">210</span></li>
+      <li class="item"><span class="name">Fried Shrimp</span><span class="price">180</span></li>
+      <li class="item"><span class="name">Seafood Pasta</span><span class="price">190</span></li>
+    </ul>
+  </section>
 
-‏<!-- Burgers -->
-‏<section id="burgers">
-‏<h2>Burger Sandwiches</h2>
-‏<div class="item"><span>Classic Burger</span><span class="price">280</span></div>
-‏<div class="item"><span>Cheese Burger</span><span class="price">300</span></div>
-‏<div class="item"><span>Mushroom Burger</span><span class="price">310</span></div>
-‏<div class="item"><span>Gossip Burger</span><span class="price">340</span></div>
-‏</section>
+  <!-- Fajitas -->
+  <section id="fajitas" class="section fade-in">
+    <h2>Fajitas</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Chicken Fajita</span><span class="price">160</span></li>
+      <li class="item"><span class="name">Beef Fajita</span><span class="price">180</span></li>
+      <li class="item"><span class="name">Mix Fajita</span><span class="price">200</span></li>
+    </ul>
+  </section>
 
-‏<!-- Sandwiches -->
-‏<section id="sandwiches">
-‏<h2>Sandwiches</h2>
-‏<div class="item"><span>Chicken Panne</span><span class="price">210</span></div>
-‏<div class="item"><span>Chicken Crispy</span><span class="price">210</span></div>
-‏<div class="item"><span>Cordon Bleu</span><span class="price">250</span></div>
-‏<div class="item"><span>Seafood (Fried)</span><span class="price">250</span></div>
-‏<div class="item"><span>Chicken Fajita</span><span class="price">230</span></div>
-‏<div class="item"><span>Beef Fajita</span><span class="price">270</span></div>
-‏<div class="item"><span>Seafood Fajita</span><span class="price">290</span></div>
-‏<div class="item"><span>Cheesy Steak</span><span class="price">310</span></div>
-‏</section>
+  <!-- Pasta -->
+  <section id="pasta" class="section fade-in">
+    <h2>Pasta</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Spaghetti Bolognese</span><span class="price">130</span></li>
+      <li class="item"><span class="name">Penne Arrabiata</span><span class="price">120</span></li>
+      <li class="item"><span class="name">Fettuccine Alfredo</span><span class="price">140</span></li>
+    </ul>
+  </section>
 
-‏<!-- Footer -->
-‏<footer style="background:#3e2f1c; color:#f5e1a4; padding:20px; text-align:center;">
-‏  <p>Subject to 12% service and 14% taxes</p>
-‏  <p>Address: 19, Kamal El Din Salah Street, Smouha - Alexandria</p>
-‏  <p>Phone: 034238828 / 01558443147</p>
-‏  <p>Email: gossipcafealex@gmail.com</p>
-‏</footer>
+  <!-- Pizza -->
+  <section id="pizza" class="section fade-in">
+    <h2>Pizza</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Margherita</span><span class="price">110</span></li>
+      <li class="item"><span class="name">Pepperoni</span><span class="price">130</span></li>
+      <li class="item"><span class="name">BBQ Chicken</span><span class="price">140</span></li>
+    </ul>
+  </section>
 
-‏</body>
-‏</html>
+  <!-- Burgers -->
+  <section id="burgers" class="section fade-in">
+    <h2>Burgers</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Cheeseburger</span><span class="price">120</span></li>
+      <li class="item"><span class="name">Chicken Burger</span><span class="price">110</span></li>
+      <li class="item"><span class="name">Beef Burger</span><span class="price">130</span></li>
+    </ul>
+  </section>
 
-‏<!-- Footer -->
-‏<footer style="background:#5e4632; color:#f5e1a4; padding:30px 20px; text-align:center; margin-top:40px;">
-‏  <p style="margin:5px 0;"><strong>Subject to 12% service and 14% taxes</strong></p>
-‏  <p style="margin:5px 0;">Address: 19, Kamal El Din Salah Street, Smouha - Alexandria</p>
-‏  <p style="margin:5px 0;">Tel: 034238828 | Mobile: 01558443147</p>
-‏  <p style="margin:5px 0;">Email: gossipcafealex@gmail.com</p>
-‏  <p style="margin:5px 0; font-size:0.9em;">Register No.: 93932 | Tax ID No.: 432589287</p>
-‏</footer>
+  <!-- Sandwiches -->
+  <section id="sandwiches" class="section fade-in">
+    <h2>Sandwiches</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Club Sandwich</span><span class="price">90</span></li>
+      <li class="item"><span class="name">Chicken Sandwich</span><span class="price">85</span></li>
+      <li class="item"><span class="name">Tuna Sandwich</span><span class="price">95</span></li>
+    </ul>
+  </section>
 
+  <!-- Dessert -->
+  <section id="dessert" class="section fade-in">
+    <h2>Dessert</h2>
+    <ul class="list">
+      <li class="item"><span class="name">Cheesecake</span><span class="price">70</span></li>
+      <li class="item"><span class="name">Chocolate Cake</span><span class="price">75</span></li>
+      <li class="item"><span class="name">Ice Cream</span><span class="price">60</span></li>
+    </ul>
+  </section>
+
+  <!-- Extras -->
+  <section id="extras" class="section fade-in">
+    <h2>Extras</h2>
+    <ul class="list">
+      <li class="item"><span class="name">French Fries</span><span class="price">40</span></li>
+      <li class="item"><span class="name">Onion Rings</span><span class="price">45</span></li>
+      <li class="item"><span class="name">Side Salad</span><span class="price">50</span></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="badge">Register No.: 93932 · Tax ID: 432589287</div>
+  <p>Subject to 12% service and 14% taxes</p>
+  <p>Address: 19, Kamal El Din Salah Street, Smouha - Alexandria</p>
+  <p>Tel: 03 4238828 · Mob: 01558443147 · Email: gossipcafealex@gmail.com</p>
+</footer>
+
+<script>
+  // hide top-nav on scroll
+  const topNav = document.querySelector('.top-nav');
+  let lastScrollNav = 0;
+  window.addEventListener('scroll', ()=>{
+    let currentScroll = window.scrollY;
+    if(currentScroll > lastScrollNav && currentScroll > 80){
+      topNav.classList.add('hidden');
+    } else {
+      topNav.classList.remove('hidden');
+    }
+    lastScrollNav = currentScroll;
+  });
+</script>
+</body>
+</html>

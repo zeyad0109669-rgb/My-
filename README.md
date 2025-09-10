@@ -153,3 +153,115 @@ section h2 {border-bottom:3px solid #a18860; padding-bottom:10px; margin-bottom:
 <h2>Sandwiches</h2>
 <div class="item"><span>Chicken Panne</span><span class="price">210</span></div>
 <div class="item"><span>Chicken Crispy</span><span class="price">210</span></
+<!-- Drinks -->
+<section id="drinks">
+<h2>Hot Drinks</h2>
+<div class="item"><span>Espresso</span><span class="price">57</span></div>
+<div class="item"><span>Double Espresso</span><span class="price">75</span></div>
+<div class="item"><span>Macchiato</span><span class="price">75</span></div>
+<div class="item"><span>Double Macchiato</span><span class="price">85</span></div>
+<div class="item"><span>Cappuccino</span><span class="price">105</span></div>
+<div class="item"><span>Latte</span><span class="price">105</span></div>
+<div class="item"><span>Nescafe</span><span class="price">85</span></div>
+<div class="item"><span>Mocha</span><span class="price">115</span></div>
+<div class="item"><span>Hot Chocolate</span><span class="price">100</span></div>
+<div class="item"><span>Nutella Coffee</span><span class="price">100</span></div>
+<div class="item"><span>Lotus Coffee</span><span class="price">110</span></div>
+<div class="item"><span>Flat White</span><span class="price">110</span></div>
+<div class="item"><span>Americano</span><span class="price">100</span></div>
+<div class="item"><span>Turkish Coffee</span><span class="price">52</span></div>
+<div class="item"><span>Double Turkish Coffee</span><span class="price">65</span></div>
+<div class="item"><span>Turkish with Milk</span><span class="price">75</span></div>
+<div class="item"><span>Turkish Hazelnut</span><span class="price">80</span></div>
+<div class="item"><span>Tea</span><span class="price">50</span></div>
+<div class="item"><span>Tea Pot (Zarda)</span><span class="price">90</span></div>
+<div class="item"><span>Flavored Tea</span><span class="price">60</span></div>
+<div class="item"><span>Mixed Herbs</span><span class="price">85</span></div>
+<div class="item"><span>Hot Cider</span><span class="price">85</span></div>
+<div class="item"><span>Frappé Caramel/Vanilla/Cinnamon/Hazelnut</span><span class="price">115</span></div>
+<div class="item"><span>Frappé Mocha</span><span class="price">125</span></div>
+<div class="item"><span>Frappé Lotus</span><span class="price">140</span></div>
+</section>
+
+<section id="iced-drinks">
+<h2>Iced Drinks</h2>
+<div class="item"><span>Iced Chocolate</span><span class="price">115</span></div>
+<div class="item"><span>Iced Espresso</span><span class="price">115</span></div>
+<div class="item"><span>Iced Latte</span><span class="price">115</span></div>
+<div class="item"><span>Iced Mocha</span><span class="price">107</span></div>
+<div class="item"><span>Iced Double Espresso</span><span class="price">120</span></div>
+<div class="item"><span>Iced Nescafe</span><span class="price">105</span></div>
+<div class="item"><span>Iced Tea</span><span class="price">100</span></div>
+</section>
+
+<section id="cocktails">
+<h2>Sparkling Cocktails</h2>
+<div class="item"><span>Espresso Red Bull</span><span class="price">155</span></div>
+<div class="item"><span>Cherry Cola</span><span class="price">95</span></div>
+<div class="item"><span>Classic Mojito</span><span class="price">115</span></div>
+<div class="item"><span>Flavored Mojito</span><span class="price">130</span></div>
+<div class="item"><span>Sunshine</span><span class="price">95</span></div>
+<div class="item"><span>Submarine</span><span class="price">120</span></div>
+</section>
+
+<section id="cocktails-main">
+<h2>Cocktails</h2>
+<div class="item"><span>Alex Night, Paradise</span><span class="price">130</span></div>
+<div class="item"><span>Kiwi Slash, Blueberry Slash</span><span class="price">122</span></div>
+<div class="item"><span>Fruit Mint</span><span class="price">112</span></div>
+</section>
+
+<section id="fresh-juice">
+<h2>Fresh Juice</h2>
+<div class="item"><span>Mango, Strawberry, Pomegranate</span><span class="price">110</span></div>
+<div class="item"><span>Guava, Banana, Watermelon, Kiwi, Orange</span><span class="price">100</span></div>
+<div class="item"><span>Lemon</span><span class="price">90</span></div>
+<div class="item"><span>Mint Lemon</span><span class="price">95</span></div>
+</section>
+
+<section id="smoothies">
+<h2>Smoothies</h2>
+<div class="item"><span>Mango, Strawberry, Lemon, Banana, Guava, Kiwi, Watermelon, Pomegranate</span><span class="price">116</span></div>
+</section>
+
+<section id="milkshake">
+<h2>Milk Shake</h2>
+<div class="item"><span>Oreo, Kiwi, Mango, Strawberry, Vanilla, Chocolate</span><span class="price">140</span></div>
+<div class="item"><span>Nutella</span><span class="price">155</span></div>
+<div class="item"><span>Lotus, Pistachio</span><span class="price">155</span></div>
+</section>
+
+<section id="soft-drinks">
+<h2>Soft Drinks</h2>
+<div class="item"><span>Water Small</span><span class="price">25</span></div>
+<div class="item"><span>Water Large</span><span class="price">50</span></div>
+<div class="item"><span>Cola, Sprite, Fanta</span><span class="price">55</span></div>
+<div class="item"><span>Fayrouz, Birell, Schweppes</span><span class="price">65</span></div>
+<div class="item"><span>Red Bull</span><span class="price">130</span></div>
+</section>
+
+<section id="extras">
+<h2>Extras</h2>
+<div class="item"><span>Ice Cream</span><span class="price">50</span></div>
+<div class="item"><span>Nuts</span><span class="price">50</span></div>
+<div class="item"><span>Flavors</span><span class="price">50</span></div>
+<div class="item"><span>Nutella</span><span class="price">50</span></div>
+<div class="item"><span>Shisha</span><span class="price">250</span></div>
+<div class="item"><span>Meassel (2)</span><span class="price">275</span></div>
+<div class="item"><span>Flavors</span><span class="price">295</span></div>
+<div class="item"><span>Pyrex Glass</span><span class="price">—</span></div>
+</section>
+
+<section id="dessert">
+<h2>Dessert</h2>
+<div class="item"><span>Molten Cake</span><span class="price">140</span></div>
+<div class="item"><span>Brownies</span><span class="price">120</span></div>
+<div class="item"><span>Oreo Madness</span><span class="price">175</span></div>
+<div class="item"><span>Om Aly with Nuts</span><span class="price">165</span></div>
+<div class="item"><span>Classic Ice Cream (3 scoops)</span><span class="price">140</span></div>
+<div class="item"><span>Waffle (Nutella, Lotus, Fruit, Caramel)</span><span class="price">150</span></div>
+<div class="item"><span>Fruit Salad</span><span class="price">150</span></div>
+</section>
+
+</body>
+</html>
